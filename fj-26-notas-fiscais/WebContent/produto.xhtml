@@ -13,17 +13,44 @@
 		<h:panelGrid columns="2">
 	
 			<h:outputLabel value="Nome:" for="nome" />
-			<h:inputText id="nome" />
+			<h:inputText id="nome" value="#{produtoBean.produto.nome}"/>
 			
 			<h:outputLabel value="Descricao:" for="descricao" />
-			<h:inputText id="descricao" />
+			<h:inputText id="descricao" value="#{produtoBean.produto.descricao}" />
 			
 			<h:outputLabel value="Preco:" for="preco" />
-			<h:inputText id="preco" />
+			<h:inputText id="preco" value="#{produtoBean.produto.preco}" />
 			
-			<h:commandButton value="Gravar" />
+			<h:commandButton value="Gravar" action="#{produtoBean.grava}" />
 			
 		</h:panelGrid>
+		
+		<tr/>
+		
+		<h:dataTable value="#{produtoBean.lista}" var="produto">
+		
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				#{produto.nome}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Descricao</f:facet>
+				#{produto.descricao}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Preco</f:facet>
+				#{produto.preco}
+			</h:column>
+		
+			<h:column>
+				<f:facet name="header">Acoes</f:facet>
+				<h:commandLink action="#{produtoBean.remove(produto)}" value="Remover" />
+			</h:column>
+		
+		
+		</h:dataTable>
 	
 	</h:form>
 	
