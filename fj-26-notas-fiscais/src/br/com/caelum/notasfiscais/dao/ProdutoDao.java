@@ -18,34 +18,24 @@ public class ProdutoDao implements Serializable{
 
 	public void adiciona(Produto produto) {
 		
-		manager.getTransaction().begin();
-
 		//persiste o objeto
 		manager.persist(produto);
 		
-		manager.getTransaction().commit();
-		manager.close();
 	}
 
 
 	public void remove(Produto produto) {
-		
-		manager.getTransaction().begin();
 
 		manager.remove(manager.merge(produto));
 
-		manager.getTransaction().commit();
-		manager.close();
 	}
 
 	public void atualiza(Produto produto) {
 		
-		manager.getTransaction().begin();
-
-		manager.merge(produto);
 		
-		manager.getTransaction().commit();
-		manager.close();
+		manager.merge(produto);
+
+		
 	}
 
 	public List<Produto> buscaPorNome(String nome) {
@@ -58,7 +48,7 @@ public class ProdutoDao implements Serializable{
 		List<Produto> lista = manager.createQuery(jpql, Produto.class)
 				.setParameter("nome", nome + "%").getResultList();
 
-		manager.close();
+		
 		
 		return lista; 
 	}
@@ -71,7 +61,7 @@ public class ProdutoDao implements Serializable{
 
 		List<Produto> lista = manager.createQuery(query).getResultList();
 
-		manager.close();
+		
 		
 		return lista; 
 	}
@@ -81,7 +71,7 @@ public class ProdutoDao implements Serializable{
 
 		Produto produto = manager.find(Produto.class, id);
 
-		manager.close();
+		
 
 		return produto;
 	}

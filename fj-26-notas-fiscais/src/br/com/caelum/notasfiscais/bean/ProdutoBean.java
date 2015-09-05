@@ -9,9 +9,11 @@ import javax.inject.Named;
 
 import br.com.caelum.notasfiscais.dao.ProdutoDao;
 import br.com.caelum.notasfiscais.modelo.Produto;
+import br.com.caelum.notasfiscais.tx.log;
 
 @Named
 @RequestScoped
+@log
 public class ProdutoBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
