@@ -35,8 +35,7 @@ public class ProdutoBean implements Serializable {
 		this.produto = produto;
 	}
 	
-	public void grava() {
-			
+	public void gravar() {
 			
 			if (produto.getId() == null) {
 				dao.adiciona(this.produto);
@@ -45,6 +44,7 @@ public class ProdutoBean implements Serializable {
 			} else {
 				dao.atualiza(produto);
 				System.out.println("Produto atualizado com sucesso !");
+				produtos = dao.listaTodos();
 			}
 			
 			produtos = dao.listaTodos();
@@ -63,6 +63,10 @@ public class ProdutoBean implements Serializable {
 		
 		dao.remove(produto);
 		this.produtos = dao.listaTodos();
+	}
+	
+	public void comecaComMaiuscula(){
+		
 	}
 
 }

@@ -14,5 +14,12 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/all-themes-1.0.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aristo-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cupertino-1.0.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/delta-1.0.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/eggplant-1.0.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/flick-1.0.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-5.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

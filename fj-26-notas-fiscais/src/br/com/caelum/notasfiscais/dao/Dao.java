@@ -1,12 +1,16 @@
 package br.com.caelum.notasfiscais.dao;
 
+import java.io.Serializable;
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
 
-public class Dao<T> {
+public class Dao<T> implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	private final Class<T> classe;
 
 	@Inject

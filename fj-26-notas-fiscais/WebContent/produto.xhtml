@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<script src="resources" type="text/javascript"></script>
 	<h:outputStylesheet library="css" name="style.css" />
@@ -19,6 +20,7 @@
 	<div id="conteudo">
 	
 	<h:form>
+		<h:messages styleClass="erros">
 		
 			<h2>
 				<h:outputText value="Novo Produto" 
@@ -29,56 +31,60 @@
 			</h2>
 			
 			<h:inputHidden value="#{produtoBean.produto.id}"/>
-			<h:outputLabel value="Nome:" for="nome" />
-			<h:inputText id="nome" value="#{produtoBean.produto.nome}">
+			<p:outputLabel value="Nome:" for="nome" />
+			<p:inputText id="nome" value="#{produtoBean.produto.nome}">
 				
-			</h:inputText>
+			</p:inputText>
 					
-			<h:outputLabel value="Descricao:" for="descricao" />
-			<h:inputText id="descricao" value="#{produtoBean.produto.descricao}" />
+			<p:outputLabel value="Descricao:" for="descricao" />
+			<p:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}" />
 					
-			<h:outputLabel value="Preco:" for="preco" />
-			<h:inputText id="preco" value="#{produtoBean.produto.preco}" />
-					
+			<p:outputLabel value="Preco:" for="preco" />
+			<p:inputText id="preco" value="#{produtoBean.produto.preco}" required="true" requiredMessage="Preço obrigatório" validatorMessage="O valor mínimo é 0,50">
+				<f:validateDoubleRange minimum="0.50"/>	
+			</p:inputText>	
 				
-				
-			<h:commandButton value="Gravar" action="#{produtoBean.grava}"/>
-			
+			<p:commandButton value="Gravar" action="#{produtoBean.gravar()}" ajax="disable"/>
+		</h:messages>	
 	</h:form>
+	
+	<br />
+	<br />
+	<br />
 	
 	<h:form id="tabela">
 			
-			<h:dataTable value="#{produtoBean.lista}" var="produto" styleClass="dados" rowClasses="impar,par">
+			<p:dataTable value="#{produtoBean.lista}" paginator="true" rows="10" var="produto" styleClass="dados" rowClasses="impar,par">
 		
-				<h:column>
+				<p:column>
 					<f:facet name="header">Nome</f:facet>
 					#{produto.nome}
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Descricao</f:facet>
 					#{produto.descricao}
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Preco</f:facet>
 					#{produto.preco}
-				</h:column>
+				</p:column>
 			
-				<h:column>
+				<p:column>
 					<f:facet name="header">Acoes</f:facet>
 					<h:commandLink action="#{produtoBean.remove(produto)}" value="Remover">
 						<f:ajax render="tabela" />
 					</h:commandLink>
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Acoes</f:facet>
 					<h:commandLink  value="Alterar">
 						<f:setPropertyActionListener value="#{produto}" target="#{produtoBean.produto}" />
 					</h:commandLink>
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:dataTable>
 		
 	</h:form>
 	
